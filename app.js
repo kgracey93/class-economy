@@ -11,7 +11,7 @@ const path         = require('path');
 
 
 mongoose
-  .connect('mongodb://localhost/class-economy', {useNewUrlParser: true})
+  .connect(process.env.MONGODB_URI || 'mongodb+srv://classroomEconomy:Bandbon@cluster0.qdhsf.mongodb.net/classroomEconomy?retryWrites=true&w=majority', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -41,7 +41,7 @@ app.use(require('node-sass-middleware')({
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/client/build')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
@@ -53,6 +53,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 // const index = require('./routes/index');
 // app.use('/', index);
-
+app.use((req, res) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + "/client/build/index.html");
+});
 
 module.exports = app;
