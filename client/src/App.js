@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
 import Navbar from './components/navbar/Navbar';
-import katieAbby from './components/KatieAbby.png'
+import katieAbby from './components/KatieAbby.png';
 
 class App extends Component {
   state = {
@@ -18,36 +18,42 @@ class App extends Component {
     });
   };
   render() {
-    console.log('this.state');
+    console.log('this.state', this.state);
     return (
       <div className="App">
-
         <Navbar user={this.state.user} setUser={this.setUser} />
-        
-          <Switch>
-            <Route
-              exact
-              path="/signup"
-              render={(props) => <SignUp setUser={this.setUser} {...props} />}
-            />
 
-            <Route
-              exact
-              path="/login"
-              render={(props) => <Login setUser={this.setUser} {...props} />}
-            />
+        <Switch>
+          <Route
+            exact
+            path="/signup"
+            render={(props) => <SignUp setUser={this.setUser} {...props} />}
+          />
 
-            {/* <Route
+          <Route
+            exact
+            path="/login"
+            render={(props) => <Login setUser={this.setUser} {...props} />}
+          />
+
+          {/* <Route
             exact
             path='/profile'
             render={props => <Profile setUser={this.setUser} {...props} user={this.state.user} />}
           /> */}
-          </Switch>
-        {/* {props.user? (
+        </Switch>
+        {this.state.user ? (
           <h1>Super Great Job You're Logged in</h1>
-        )} */}
-        <h1>WELCOME TO ClassEconomy or ClassCoin OR WHATEVER WE'RE CALLING IT!</h1>
-      <img src={katieAbby} alt="not working"/>
+        ) : (
+          <div>
+            <h1>
+              WELCOME TO ClassEconomy or ClassCoin OR WHATEVER WE'RE CALLING IT!
+            </h1>
+            <p>signup or login to continue </p>
+          </div>
+        )}
+
+        <img src={katieAbby} alt="not working" />
       </div>
     );
   }
