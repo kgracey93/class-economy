@@ -17,10 +17,10 @@ class App extends Component {
       user: user,
     });
   };
+  
   render() {
     return (
       <div className="App">
-      <BrowserRouter>
         <Navbar user={this.state.user} setUser={this.setUser} />
         
           <Switch>
@@ -42,8 +42,15 @@ class App extends Component {
             render={props => <Profile setUser={this.setUser} {...props} user={this.state.user} />}
           /> */}
           </Switch>
-        </BrowserRouter>
-        <h1>WELCOME TO ClassEconomy or ClassCoin OR WHATEVER WE'RE CALLING IT!</h1>
+        {this.state.user ? (
+          <h1>Super Great Job You're Logged in</h1>
+        ) : (
+          <div>
+          <h1>WELCOME TO ClassEconomy or ClassCoin OR WHATEVER WE'RE CALLING IT!</h1>
+          <p>Login to continue</p>
+          </div>
+        )
+        }
       <img src={katieAbby} alt="not working"/>
       </div>
     );

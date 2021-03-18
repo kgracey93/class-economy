@@ -5,13 +5,13 @@ import { logout } from '../../services/auth';
 
 export default function Navbar(props) {
 
-  // const handleLogout = (props) => {
-  //   console.log('logout')
-  //   logout().then(() => {
-  //     props.setUser(null)
-  //   })
-  //   console.log('logout successful')
-  // }
+  const handleLogout = (props) => {
+    console.log('logout')
+    logout().then(() => {
+      props.setUser(null)
+    })
+    console.log('logout successful')
+  }
 
   
   return (
@@ -23,10 +23,10 @@ export default function Navbar(props) {
       </div>
       {props.user ? (
         <div className="links">
-          <Link className="link" to="/challenges">Challenges</Link>
-          <Link className="link" to="/rewards">Rewards</Link>
+          <Link className="link" to="/bank-account">Bank Account</Link>
+          <Link className="link" to="/job-board">Job Board</Link>
           <Link className="link" to="/profile">Profile</Link>
-          {/* <Link className="link" to="/login" onClick={() => handleLogout(props)}>Log Out</Link> */}
+          <Link className="link" to="/login" onClick={() => handleLogout(props)}>Log Out</Link>
 
         </div>
       ) : (
