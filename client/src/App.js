@@ -43,7 +43,7 @@ class App extends Component {
           /> */}
         </Switch>
         {this.state.user ? (
-          <h1>Super Great Job You're Logged in</h1>
+          <h1>Super Great Job {this.state.user.username} <br></br>You're Logged in</h1>
         ) : (
           <div>
             <h1>
