@@ -9,7 +9,6 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
-
 mongoose
   .connect(process.env.MONGODB_URI || 'mongodb+srv://classroomEconomy:Bandbon@cluster0.qdhsf.mongodb.net/classroomEconomy?retryWrites=true&w=majority', {useNewUrlParser: true})
   .then(x => {
@@ -22,7 +21,33 @@ mongoose
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
+const session = require('express-session');
+const passport = require('passport');
+
+require('./configs/passport.js');
+
+// const MongoStore = require('connect-mongo')(session);
+
 const app = express();
+
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET,
+//     cookie: { maxAge: 24 * 60 * 60 * 1000 },
+//     saveUninitialized: false,
+//     resave: true,
+//     store: new MongoStore({
+//       // when the session cookie has an expiration date
+//       // connect-mongo will use it, otherwise it will create a new 
+//       // one and use ttl - time to live - in that case one day
+//       mongooseConnection: mongoose.connection,
+//       ttl: 24 * 60 * 60 * 1000
+//     })
+//   })
+// )
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -49,10 +74,12 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
+const auth = require('./routes/auth');
+app.use('/auth', auth);
 
 // const index = require('./routes/index');
 // app.use('/', index);
+
 app.use((req, res) => {
   // If no routes match, send them the React HTML.
   res.sendFile(__dirname + "/client/build/index.html");
