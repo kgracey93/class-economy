@@ -10,7 +10,7 @@ const logger       = require('morgan');
 const path         = require('path');
 
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb+srv://classroomEconomy:Bandbon@cluster0.qdhsf.mongodb.net/classroomEconomy?retryWrites=true&w=majority', {useNewUrlParser: true})
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/classroom-economy', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true,})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -72,10 +72,10 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'classroom-economy';
 
 const auth = require('./routes/auth');
-app.use('/auth', auth);
+app.use('/api/auth', auth);
 
 // const index = require('./routes/index');
 // app.use('/', index);

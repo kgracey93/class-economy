@@ -21,6 +21,7 @@ export default class SignUp extends Component {
     event.preventDefault();
     const { username, password, firstName, lastName, email } = this.state;
     signup(username, password, firstName, lastName, email).then((data) => {
+      // console.log('data from the signup service', data);
       if (data.message) {
         this.setState({
           message: data.message,
@@ -31,6 +32,7 @@ export default class SignUp extends Component {
           email: '',
         });
       } else {
+        // console.log(this.props);
         this.props.setUser(data);
         this.props.history.push('/');
       }
@@ -42,15 +44,15 @@ export default class SignUp extends Component {
       <div className="auth-container">
         <div className="left">
           <div className="header">
-            <h2 className="animation a1">Welcome</h2>
-            <h4 className="animation a2">Sign up to get that Coinnn</h4>
+            <h2>Welcome</h2>
+            <h4>Sign up to get that Coinnn</h4>
           </div>
           <div className="form">
             <form onSubmit={this.handleSubmit}>
               <div className="form-field-box">
                 {/* <label htmlFor="username">Username: </label> */}
                 <input
-                  className="form-field animation a3"
+                  className="form-field"
                   type="text"
                   id="username"
                   name="username"
@@ -63,7 +65,7 @@ export default class SignUp extends Component {
               <div className="form-field-box">
                 {/* <label htmlFor="password">Password: </label> */}
                 <input
-                  className="form-field animation a4"
+                  className="form-field"
                   type="password"
                   id="password"
                   name="password"
@@ -78,7 +80,7 @@ export default class SignUp extends Component {
               <div className="form-field-box">
                 {/* <label htmlFor="firstName">Name: </label> */}
                 <input
-                  className="form-field animation a3"
+                  className="form-field"
                   type="text"
                   id="firstName"
                   name="firstName"
@@ -90,7 +92,7 @@ export default class SignUp extends Component {
               <div className="form-field-box">
                 {/* <label htmlFor="lastName">Last Name: </label> */}
                 <input
-                  className="form-field animation a4"
+                  className="form-field"
                   type="text"
                   id="lastName"
                   name="lastName"
@@ -102,7 +104,7 @@ export default class SignUp extends Component {
               <div className="form-field-box">
                 {/* <label htmlFor="email">Email: </label> */}
                 <input
-                  className="form-field animation a3"
+                  className="form-field"
                   type="email"
                   id="email"
                   name="email"
@@ -112,7 +114,7 @@ export default class SignUp extends Component {
                 />
               </div>
               <br />
-              <button className="button-dark animation a6" type="submit">
+              <button type="submit">
                 Sign Up
               </button>
             </form>
