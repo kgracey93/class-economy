@@ -14,6 +14,8 @@ export default function Navbar(props) {
   }
 
   
+console.log('navbar props', props);
+
   return (
     <nav className="navbar">
       <div className="logo">
