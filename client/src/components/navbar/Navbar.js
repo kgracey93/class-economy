@@ -16,7 +16,7 @@ export default function Navbar(props) {
     <nav className="navbar">
       <div className="logo">
         <Link className="link" to="/">
-          {/* <img src="./images/logoLight.png" alt="logo link to homepage" width="30vw" className="navbar-logo"/> */}
+          Home
         </Link>
       </div>
       {props.user ? (
