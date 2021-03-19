@@ -42,7 +42,7 @@ class App extends Component {
             render={props => <Profile setUser={this.setUser} {...props} user={this.state.user} />}
           /> */}
         </Switch>
-        {this.state.user ? (
+        {/* {this.state.user ? (
           <h1>Super Great Job {this.state.user.username} <br></br>You're Logged in</h1>
         ) : (
           <div>
@@ -53,7 +53,7 @@ class App extends Component {
           </div>
         )}
 
-        <img src={katieAbby} alt="not working" />
+        <img src={katieAbby} alt="not working" /> */}
       </div>
     );
   }
