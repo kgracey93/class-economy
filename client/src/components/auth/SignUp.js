@@ -59,6 +59,7 @@ export default class SignUp extends Component {
               <div className="header">
                 <h2>Welcome</h2>
                 <h4>Sign up to get that Coinnn</h4>
+                <h4>{this.state.role.charAt(0).toUpperCase() + this.state.role.slice(1)} login</h4>
               </div>
               <div className="form">
                 <form onSubmit={this.handleSubmit}>
