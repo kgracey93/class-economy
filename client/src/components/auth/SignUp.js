@@ -10,6 +10,7 @@ export default class SignUp extends Component {
     firstName: '',
     lastName: '',
     email: '',
+    role: '',
   };
 
   handleChange = (event) => {
@@ -19,9 +20,9 @@ export default class SignUp extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { username, password, firstName, lastName, email } = this.state;
-    signup(username, password, firstName, lastName, email).then((data) => {
-      // console.log('data from the signup service', data);
+    const { username, password, firstName, lastName, email, role } = this.state;
+    console.log('role', role, 'username', username);
+    signup(username, password, firstName, lastName, email, role).then((data) => {
       if (data.message) {
         this.setState({
           message: data.message,
@@ -29,7 +30,7 @@ export default class SignUp extends Component {
           password: '',
           firstName: '',
           lastName: '',
-          email: '',
+          email: '', 
         });
       } else {
         // console.log(this.props);
@@ -41,7 +42,9 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <div className="auth-container">
+      <>
+      {this.state.role ? (
+        <div className="auth-container">
         <div className="left">
           <div className="header">
             <h2>Welcome</h2>
@@ -122,6 +125,16 @@ export default class SignUp extends Component {
         </div>
         <div className="right"></div>
       </div>
+      ) : (
+        <div>
+          <h1>Sign up with Classroom Economy as</h1>
+          <button name="role" onClick={this.handleChange} value="student">Student</button>
+          <button name="role" onClick={this.handleChange} value="teacher">Teacher</button>
+          <button name="role" onClick={this.handleChange} value="school-leader">School Leader</button>
+        </div>
+      )}
+      </>
+      
     );
   }
 }

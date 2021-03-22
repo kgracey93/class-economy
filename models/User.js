@@ -20,7 +20,7 @@ const userSchema = new Schema(
     profileImage: String,
     role: {
       type: String,
-      enum: ['student', 'teacher', 'parent'],
+      enum: ['student', 'teacher', 'parent', 'school-leader'],
     },
     classCodes: [{ type: Schema.Types.ObjectId, ref: 'classCode' }],
     landlord: [{ type: Schema.Types.ObjectId, ref: 'User' }],

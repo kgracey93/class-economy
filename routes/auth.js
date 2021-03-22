@@ -6,7 +6,7 @@ const passport = require('passport');
 
 router.post('/signup', (req, res, next) => {
   // console.log('signup from backend', req.body);
-  const { username, password, firstName, lastName, email } = req.body;
+  const { username, password, firstName, lastName, email, role } = req.body;
 
   if (password.length < 8) {
     return res.status(400).json({ message: 'Your password must be 8 chars minimum' });
@@ -28,7 +28,8 @@ router.post('/signup', (req, res, next) => {
           password: hash,
           firstName,
           lastName,
-          email
+          email, 
+          role,
         })
           .then(dbUser => {
             // login with passport:
