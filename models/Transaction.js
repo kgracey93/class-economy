@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const transactionSchema = new Schema(
   {
-    payor: {type: Schema.Types.ObjectId, ref: 'user'},
-    payee: {type: Schema.Types.ObjectId, ref: 'user'},
+    payor: {type: Schema.Types.ObjectId, ref: 'User'},
+    payee: {type: Schema.Types.ObjectId, ref: 'User'},
     amount: {
       type: Number,
       required: true

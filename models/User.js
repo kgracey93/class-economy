@@ -22,9 +22,9 @@ const userSchema = new Schema(
       type: String,
       enum: ['student', 'teacher', 'parent', 'school-leader'],
     },
-    classCodes: [{ type: Schema.Types.ObjectId, ref: 'classCode' }],
+    classCodes: [{ type: Schema.Types.ObjectId, ref: 'ClassCode' }],
     landlord: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-    toDos: [{ type: Schema.Types.ObjectId, ref: 'toDo' }],
+    toDos: [{ type: Schema.Types.ObjectId, ref: 'ToDo' }],
   },
   {
     timestamps: true,
