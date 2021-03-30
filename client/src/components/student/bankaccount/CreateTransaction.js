@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-
 export default class CreateTransaction extends Component {
   state = {
-    category: '',
-    dailyTargetDescription: '',
-    category: 'health',
+    title: '',
+    amount: '',
+    newBalance: '',
     user: this.props.user,
     transactionID: '',
-    button: '',
+    operation: ''
   };
 
   resetState = () => {
     this.setState({
       title: '',
-      goal: '',
-      dailyTargetDescription: '',
-      category: '',
+      amount: '',
+      reason: '',
       user: this.props.user,
       transactionID: '',
     });
@@ -31,68 +29,36 @@ export default class CreateTransaction extends Component {
     });
   };
 
-  // handleSubmit = async (event) => {
-  //   console.log(this.state.button);
-  //   event.preventDefault()
-  //   let id = this.state.user._id;
-  //   try {
-  //     if(this.state.button  === 'later') {
-  //     const newTransaction = await axios.post('/api/transactions', {
-  //       title: this.state.title,
-  //       goal: this.state.goal,
-  //       dailyTarget: {
-  //         description: this.state.dailyTargetDescription,
-  //       },
-  //       category: this.state.category,
-  //     });
-  //     let user = this.props.user;
-  //     user.transactions.unshift({
-  //       id: newTransaction.data._id,
-  //       status: 'favorite',
-  //       tracker: [],
-  //     });
-  //     this.setState({
-  //       user: this.props.user,
-  //     });
-
-  //     const updatedUser = await axios.put(`/api/users/${id}`, {
-  //       transactions: this.state.user.transactions,
-  //       rewards: this.state.user.rewards,
-  //     });
-  //     this.props.history.push('/transactions');
-  //   } 
+  handleSubmit = async (event) => {
+    console.log(this.state.button);
+    event.preventDefault()
+    let id = this.state.user._id;
     
-  //   else if (this.state.button === 'start') {
-  //     const newTransaction = await axios.post('/api/transactions', {
-  //       title: this.state.title,
-  //       goal: this.state.goal,
-  //       dailyTarget: {
-  //         description: this.state.dailyTargetDescription,
-  //       },
-  //       category: this.state.category,
-  //     });
-  //     let user = this.props.user;
-  //     user.transactions.unshift({
-  //       id: newTransaction.data._id,
-  //       status: 'active',
-  //       tracker: [],
-  //     });
-  //     this.setState({
-  //       user: this.props.user,
-  //     });
-  //     const updatedUser = await axios.put(`/api/users/${id}`, {
-  //       transactions: this.state.user.transactions,
-  //       rewards: this.state.user.rewards,
-  //     });
-  //     await console.log('state after creating new transaction', this.state);
-  //     this.props.history.push(`/transactions/${newTransaction.data._id}/start`);
-  //   }
+    try {
+      const newTransaction = await axios.post('/api/transactions', {
+        title: this.state.title,
+        amount: this.state.amount,
+        reason: this.state.reason,
+        operation: this.state.operation,
+      });
+      let user = this.props.user;
+      user.transactions.unshift({
+        _id: newTransaction.data._id,
+      });
+      this.setState({
+        user: this.props.user,
+      });
 
-  // } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      const updatedUser = await axios.put(`/api/users/${id}`, {
+        transactions: this.state.user.transactions,
+        rewards: this.state.user.rewards,
+      });
+      this.props.history.push('/bank-account');
 
+  } catch (error) {
+      console.log(error);
+    }
+  };
 
   componentDidMount() {
     this.setState({
@@ -104,71 +70,90 @@ export default class CreateTransaction extends Component {
     return (
       <>
         <div>
-          <form
-            onSubmit={this.handleSubmit}
-          >
+          <form onSubmit={this.handleSubmit}>
             <h1>Create a Transaction</h1>
             <div>
               <div className="create-transaction-form-item">
-                <label htmlFor="title">Date: </label>
-                <br />
+                <label>Date: </label>
                 <input
                   type="date"
                   id="date"
                   name="date"
                   // value={this.state.date}
-                  // onChange={this.handleChange}
+                  onChange={this.handleChange}
                   // required
                 />
               </div>
 
               <div className="create-transaction-form-item">
-                <label htmlFor="type">Transaction Type:</label>
-                <br />
-                <select 
-                  id="category"
-                  name="category"
-                  value={this.state.category}
+                <label>Type</label>
+                {/* <p>this will be generated with more specifics one it actually comes from the teacher's side</p> */}
+                <select
+                  id="operation"
+                  name="operation"
+                  value={this.state.operation}
                   onChange={this.handleChange}
                 >
-                  <option>Rent</option>
-                  <option>Paycheck</option>
-                  <option>Fine</option>
-                  <option>Bonus</option>
-                  <option>Other</option>
+                  <option value="deposit">Deposit</option>
+                  <option value="withdraw">Withdraw</option>
                 </select>
               </div>
 
               <div className="create-transaction-form-item">
-                <label htmlFor="dailyTargetDescription">Daily Action:</label>
-                <br />
+                <label>Amount: </label>
                 <input
-                  type="text"
-                  id="dailyTargetDescription"
-                  name="dailyTargetDescription"
-                  value={this.state.dailyTargetDescription}
+                  type="amount"
+                  id="amount"
+                  name="amount"
+                  // value={this.state.amount}
                   onChange={this.handleChange}
-                  placeholder="Example Action: Get 8 hours of sleep each night"
+                  // required
                 />
               </div>
 
               <div className="create-transaction-form-item">
-                <label htmlFor="category">Category &nbsp; &nbsp;</label>
-                {/* <br /> */}
+                <label>Reason:</label>
+                {/* <p>this will be generated with more specifics one it actually comes from the teacher's side</p> */}
                 <select
-                  name="category"
-                  id="category"
-                  value={this.state.category}
+                  id="reason"
+                  name="reason"
+                  value={this.state.reason}
                   onChange={this.handleChange}
                 >
-                  <option value="health">Health</option>
-                  <option value="fitness">Fitness</option>
-                  <option value="career">Career</option>
-                  <option value="productivity">Productivity</option>
-                  <option value="finance">Finance</option>
+                  <option value="rent">Rent</option>
+                  <option value="paycheck">Paycheck</option>
+                  <option value="fine">Fine</option>
+                  <option value="bonus">Bonus</option>
                   <option value="other">Other</option>
                 </select>
               </div>
+
+              <div className="create-transaction-form-item">
+                <label>New Balance: </label>
+                <br />
+                <input
+                  type="newBalance"
+                  id="newBalance"
+                  name="newBalance"
+                  // value={this.state.newBalance}
+                  onChange={this.handleChange}
+                  // required
+                />
+              </div>
+
+              <div className="create-transaction-form-item">
+                <label>How much do you want to put towards savings?</label>
+                <br />
+                <input
+                  type="savings"
+                  id="savings"
+                  name="savings"
+                  // value={this.state.newBalance}
+                  onChange={this.handleChange}
+                  // required
+                />
+              </div>
+
             </div>
 
             <div className="create-transaction-buttons">
@@ -179,19 +164,9 @@ export default class CreateTransaction extends Component {
                 type="submit"
                 className="button-light"
                 form="create-transaction-form"
-                value="later"
-                onClick={() => this.state.button = 'later'}
+                // onClick={}
               >
-                Save for later
-              </button>
-              <button
-                type="submit"
-                className="button-dark"
-                form="create-transaction-form"
-                value="start"
-                onClick={() => this.state.button = 'start'}
-              >
-                Start now!
+                Submit
               </button>
             </div>
           </form>

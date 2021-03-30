@@ -77,6 +77,9 @@ app.locals.title = 'classroom-economy';
 const auth = require('./routes/auth');
 app.use('/api/auth', auth);
 
+const transactions = require('./routes/transactions');
+app.use('/api/transactions', transactions);
+
 // const index = require('./routes/index');
 // app.use('/', index);
 
