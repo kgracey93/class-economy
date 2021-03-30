@@ -3,8 +3,9 @@ import axios from 'axios';
 
 export default class CreateTransaction extends Component {
   state = {
-    title: '',
+    // title: '',
     amount: '',
+    category: '',
     newBalance: '',
     user: this.props.user,
     transactionID: '',
@@ -38,7 +39,7 @@ export default class CreateTransaction extends Component {
       const newTransaction = await axios.post('/api/transactions', {
         title: this.state.title,
         amount: this.state.amount,
-        reason: this.state.reason,
+        category: this.state.category,
         operation: this.state.operation,
       });
       let user = this.props.user;
@@ -51,7 +52,6 @@ export default class CreateTransaction extends Component {
 
       const updatedUser = await axios.put(`/api/users/${id}`, {
         transactions: this.state.user.transactions,
-        rewards: this.state.user.rewards,
       });
       this.props.history.push('/bank-account');
 
@@ -86,7 +86,7 @@ export default class CreateTransaction extends Component {
               </div>
 
               <div className="create-transaction-form-item">
-                <label>Type</label>
+                <label>Type: </label>
                 {/* <p>this will be generated with more specifics one it actually comes from the teacher's side</p> */}
                 <select
                   id="operation"
@@ -115,9 +115,9 @@ export default class CreateTransaction extends Component {
                 <label>Reason:</label>
                 {/* <p>this will be generated with more specifics one it actually comes from the teacher's side</p> */}
                 <select
-                  id="reason"
-                  name="reason"
-                  value={this.state.reason}
+                  id="category"
+                  name="category"
+                  value={this.state.category}
                   onChange={this.handleChange}
                 >
                   <option value="rent">Rent</option>
