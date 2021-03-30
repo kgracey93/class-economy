@@ -25,6 +25,7 @@ const userSchema = new Schema(
     classCodes: [{ type: Schema.Types.ObjectId, ref: 'ClassCode' }],
     landlord: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     toDos: [{ type: Schema.Types.ObjectId, ref: 'ToDo' }],
+    transactions: [{ type: Schema.Types.ObjectId, ref: 'Transaction' }],
   },
   {
     timestamps: true,

@@ -6,9 +6,10 @@ import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
 import Navbar from './components/navbar/Navbar';
 import Dashboard from './components/dashboard/Dashboard';
-import Profile from './components/profile/Profile'
-import JobBoard from './components/student/jobboard/JobBoard'
-import BankAccount from './components/student/bankaccount/BankAccount'
+import Profile from './components/profile/Profile';
+import JobBoard from './components/student/jobboard/JobBoard';
+import CreateTransaction from './components/student/bankaccount/CreateTransaction';
+import BankAccount from './components/student/bankaccount/BankAccount';
 
 class App extends Component {
   state = {
@@ -40,29 +41,63 @@ class App extends Component {
 
           <Route
             exact
-            path='/profile'
-            render={props => <Profile setUser={this.setUser} {...props} user={this.state.user} />}
+            path="/profile"
+            render={(props) => (
+              <Profile
+                setUser={this.setUser}
+                {...props}
+                user={this.state.user}
+              />
+            )}
           />
 
           <Route
             exact
-            path='/job-board'
-            render={props => <JobBoard setUser={this.setUser} {...props} user={this.state.user} />}
+            path="/job-board"
+            render={(props) => (
+              <JobBoard
+                setUser={this.setUser}
+                {...props}
+                user={this.state.user}
+              />
+            )}
           />
 
           <Route
             exact
-            path='/bank-account'
-            render={props => <BankAccount setUser={this.setUser} {...props} user={this.state.user} />}
+            path="/transaction/create"
+            render={(props) => (
+              <CreateTransaction
+                setUser={this.setUser}
+                {...props}
+                user={this.state.user}
+              />
+            )}
           />
 
           <Route
-            exact path='/'
-            render={props => <Dashboard
-              setUser={this.setUser}
-              user={this.state.user} {...props} />}
+            exact
+            path="/bank-account"
+            render={(props) => (
+              <BankAccount
+                setUser={this.setUser}
+                {...props}
+                user={this.state.user}
+              />
+            )}
           />
 
+          <Route
+            exact
+            path="/"
+            render={(props) => (
+              <Dashboard
+                setUser={this.setUser}
+                user={this.state.user}
+                {...props}
+              />
+            )}
+          />
         </Switch>
         {/* {this.state.user ? (
           <h1>Super Great Job {this.state.user.username} <br></br>You're Logged in</h1>
