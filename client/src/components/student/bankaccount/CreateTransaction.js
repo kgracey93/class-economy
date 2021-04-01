@@ -3,18 +3,18 @@ import axios from 'axios';
 
 export default class CreateTransaction extends Component {
   state = {
-    // title: '',
+    description: '',
     amount: '',
-    category: '',
+    category: 'rent',
     newBalance: '',
     user: this.props.user,
     transactionID: '',
-    operation: ''
+    operation: 'deposit',
   };
 
   resetState = () => {
     this.setState({
-      title: '',
+      // description: '',
       amount: '',
       reason: '',
       user: this.props.user,
@@ -31,16 +31,16 @@ export default class CreateTransaction extends Component {
   };
 
   handleSubmit = async (event) => {
-    console.log(this.state.button);
     event.preventDefault()
     let id = this.state.user._id;
     
     try {
       const newTransaction = await axios.post('/api/transactions', {
-        title: this.state.title,
+        // description: this.state.description,
         amount: this.state.amount,
         category: this.state.category,
         operation: this.state.operation,
+        description: this.state.description
       });
       let user = this.props.user;
       user.transactions.unshift({
@@ -50,9 +50,9 @@ export default class CreateTransaction extends Component {
         user: this.props.user,
       });
 
-      const updatedUser = await axios.put(`/api/users/${id}`, {
-        transactions: this.state.user.transactions,
-      });
+      // const updatedUser = await axios.put(`/api/users/${id}`, {
+      //   transactions: this.state.user.transactions,
+      // });
       this.props.history.push('/bank-account');
 
   } catch (error) {
@@ -112,7 +112,7 @@ export default class CreateTransaction extends Component {
               </div>
 
               <div className="create-transaction-form-item">
-                <label>Reason:</label>
+                <label>Category:</label>
                 {/* <p>this will be generated with more specifics one it actually comes from the teacher's side</p> */}
                 <select
                   id="category"
@@ -126,6 +126,19 @@ export default class CreateTransaction extends Component {
                   <option value="bonus">Bonus</option>
                   <option value="other">Other</option>
                 </select>
+              </div>
+
+              <div className="create-transaction-form-item">
+                <label>Description: </label>
+                <br />
+                <input
+                  type="description"
+                  id="description"
+                  name="description"
+                  // value={this.state.newBalance}
+                  onChange={this.handleChange}
+                  // required
+                />
               </div>
 
               <div className="create-transaction-form-item">
@@ -162,8 +175,8 @@ export default class CreateTransaction extends Component {
               </button> */}
               <button
                 type="submit"
-                className="button-light"
-                form="create-transaction-form"
+                // className="button-light"
+                // form="create-transaction-form"
                 // onClick={}
               >
                 Submit

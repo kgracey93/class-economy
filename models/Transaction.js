@@ -6,8 +6,7 @@ const transactionSchema = new Schema(
     payor: {type: Schema.Types.ObjectId, ref: 'User'},
     payee: {type: Schema.Types.ObjectId, ref: 'User'},
     amount: {
-      type: Number,
-      required: true
+      type: String,
     },
     operation: {
       type: String,
