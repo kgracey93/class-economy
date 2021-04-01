@@ -2,6 +2,18 @@ const express = require('express');
 const router  = express.Router();
 const Transaction = require('../models/Transaction');
 
+// get all transactions
+router.get('/', (req, res) => {
+  Transaction.find()
+    .then(transactions => {
+      // console.log('CHALLENGES', challenges)
+      res.status(200).json(transactions);
+    })
+    .catch(err => {
+      res.json(err);
+    })
+});
+
 router.post('/', (req, res) => {
   const { description, amount, category, operation} = req.body;
   const owner = req.user._id;
