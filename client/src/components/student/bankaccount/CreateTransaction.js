@@ -43,6 +43,7 @@ export default class CreateTransaction extends Component {
         description: this.state.description
       });
       let user = this.props.user;
+      console.log('user', user)
       user.transactions.unshift({
         _id: newTransaction.data._id,
       });
@@ -50,9 +51,9 @@ export default class CreateTransaction extends Component {
         user: this.props.user,
       });
 
-      // const updatedUser = await axios.put(`/api/users/${id}`, {
-      //   transactions: this.state.user.transactions,
-      // });
+      const updatedUser = await axios.put(`/api/users/${id}`, {
+        transactions: this.state.user.transactions,
+      });
       this.props.history.push('/bank-account');
 
   } catch (error) {
