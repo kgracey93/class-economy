@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import CreateTransaction from './CreateTransaction';
+import TransactionTable from './TransactionTable';
 
 export default class BankAccount extends Component {
   state = {
@@ -28,12 +29,29 @@ export default class BankAccount extends Component {
     return (
       <>
         <Link to="/transaction/create">Add Transaction</Link>
-        <div>{this.state.transactions.map(transaction => {
-          return (
-            <div key={transaction._id}>{transaction.amount}</div>
-          )
-        })}</div>
+        <br/>
+        <br/>
+        <br/>
+        <table>
+          <tr>
+            <th>Amount</th>
+            <th>Deposit/Withdraw</th>
+            <th>Category</th>
+            <th>Description</th>
+          </tr>
+          {/* <tr> */}
+          {this.state.transactions.map((transaction) => {
+            return <TransactionTable transaction={transaction} />;
+          })}
+          {/* </tr> */}
+        </table>
+        <div>
+          {/* {this.state.transactions.map((transaction) => {
+            return <TransactionTable transaction={transaction} />;
+          })} */}
+        </div>
       </>
     );
   }
+  ß;
 }
