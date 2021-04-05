@@ -10,8 +10,9 @@ export default class SignUp extends Component {
   };
 
   handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    const { name } = event.target;
+    this.setState({ role: name });
+    console.log(event.target.name);
   };
 
   handleSubmit = (event) => {
@@ -34,10 +35,10 @@ export default class SignUp extends Component {
 
   cancel = (event) => {
     this.setState({
-      role: ''
-    })
+      role: '',
+    });
     this.props.history.push('/');
-  }
+  };
 
   render() {
     return (
@@ -48,7 +49,9 @@ export default class SignUp extends Component {
               <div className="header">
                 <h2 className="animation a1">Welcome Back</h2>
                 <h4 className="animation a2">
-                  {this.state.role.charAt(0).toUpperCase() + this.state.role.slice(1)} login
+                  {this.state.role.charAt(0).toUpperCase() +
+                    this.state.role.slice(1)}{' '}
+                  login
                 </h4>
               </div>
               <div className="form">
@@ -81,33 +84,46 @@ export default class SignUp extends Component {
                   </div>
                   {this.state.message && <p>{this.state.message}</p>}
                   <br />
-                  <button className="button-dark animation a6" type="submit">
-                    Log In
-                  </button>
-                  <button onClick={this.cancel}>
-                    Cancel
-                  </button>
+                  <div className="buttons">
+                    <button className="button-dark animation a6" type="submit">
+                      Log In
+                    </button>
+                    <button onClick={this.cancel}>Cancel</button>
+                  </div>
                 </form>
               </div>
             </div>
             <div className="right"></div>
           </div>
         ) : (
-          <div>
+          <div className="login">
             <h1>Login with Classroom Economy as</h1>
-            <button name="role" onClick={this.handleChange} value="student">
-              Student
-            </button>
-            <button name="role" onClick={this.handleChange} value="teacher">
-              Teacher
-            </button>
-            <button
-              name="role"
-              onClick={this.handleChange}
-              value="school-leader"
-            >
-              School Leader
-            </button>
+            <div className="role-buttons">
+              <div className="role" onClick={this.handleChange}>
+                <img
+                  src="../../images/backpack.png"
+                  alt="backpack"
+                  name="student"
+                />
+                <h1>Student</h1>
+              </div>
+              <div className="role" onClick={this.handleChange}>
+                <img
+                  src="../../images/apple.png"
+                  alt="backpack"
+                  name="teacher"
+                />
+                <h1>Teacher</h1>
+              </div>
+              <div className="role" onClick={this.handleChange}>
+                <img
+                  src="../../images/clipboard.png"
+                  alt="backpack"
+                  name="school-leader"
+                />
+                <h1>School Leader</h1>
+              </div>
+            </div>
           </div>
         )}
       </>

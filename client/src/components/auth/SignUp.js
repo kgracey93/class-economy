@@ -14,8 +14,8 @@ export default class SignUp extends Component {
   };
 
   handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    const { name } = event.target;
+    this.setState({ role: name });
   };
 
   handleSubmit = (event) => {
@@ -44,11 +44,10 @@ export default class SignUp extends Component {
 
   cancel = (event) => {
     this.setState({
-      role: ''
-    })
+      role: '',
+    });
     this.props.history.push('/');
-  }
-
+  };
 
   render() {
     return (
@@ -59,7 +58,11 @@ export default class SignUp extends Component {
               <div className="header">
                 <h2>Welcome</h2>
                 <h4>Sign up to get that Coinnn</h4>
-                <h4>{this.state.role.charAt(0).toUpperCase() + this.state.role.slice(1)} login</h4>
+                <h4>
+                  {this.state.role.charAt(0).toUpperCase() +
+                    this.state.role.slice(1)}{' '}
+                  signup
+                </h4>
               </div>
               <div className="form">
                 <form onSubmit={this.handleSubmit}>
@@ -130,29 +133,44 @@ export default class SignUp extends Component {
                     />
                   </div>
                   <br />
-                  <button type="submit">Sign Up</button>
-                  <button onClick={this.cancel}>Cancel</button>
+                  <div className="buttons">
+                    <button type="submit">Sign Up</button>
+                    <button onClick={this.cancel}>Cancel</button>
+                  </div>
                 </form>
               </div>
             </div>
             <div className="right"></div>
           </div>
         ) : (
-          <div>
-            <h1>Sign up with Classroom Economy as</h1>
-            <button name="role" onClick={this.handleChange} value="student">
-              Student
-            </button>
-            <button name="role" onClick={this.handleChange} value="teacher">
-              Teacher
-            </button>
-            <button
-              name="role"
-              onClick={this.handleChange}
-              value="school-leader"
-            >
-              School Leader
-            </button>
+          <div className="signup">
+            <h1>Signup with Classroom Economy as</h1>
+            <div className="role-buttons">
+              <div className="role" onClick={this.handleChange}>
+                <img
+                  src="../../images/backpack.png"
+                  alt="backpack"
+                  name="student"
+                />
+                <h1>Student</h1>
+              </div>
+              <div className="role" onClick={this.handleChange}>
+                <img
+                  src="../../images/apple.png"
+                  alt="backpack"
+                  name="teacher"
+                />
+                <h1>Teacher</h1>
+              </div>
+              <div className="role" onClick={this.handleChange}>
+                <img
+                  src="../../images/clipboard.png"
+                  alt="backpack"
+                  name="school-leader"
+                />
+                <h1>School Leader</h1>
+              </div>
+            </div>
           </div>
         )}
       </>
