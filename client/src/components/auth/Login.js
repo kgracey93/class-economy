@@ -16,6 +16,11 @@ export default class SignUp extends Component {
     // console.log(event.target.name);
   };
 
+  selectUserType = (event) => {
+    const { name } = event.target;
+    this.setState({ role: name });
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     const { username, password } = this.state;
@@ -102,33 +107,35 @@ export default class SignUp extends Component {
           <div className="login">
             <h1>Login with Classroom Economy as</h1>
             <div className="role-buttons">
-              <button
+              <div
                 className="role"
                 name="role"
                 value="student"
-                onClick={this.handleChange}
+                onClick={this.selectUserType}
               >
-                <img src="../../images/backpack.png" alt="backpack" />
+                <img src="../../images/backpack.png" alt="backpack" name="student"/>
                 <h1>Student</h1>
-              </button>
-              <button
+              </div>
+              <div
                 className="role"
                 name="role"
                 value="teacher"
-                onClick={this.handleChange}
+                onClick={this.selectUserType}
               >
-                <img src="../../images/apple.png" alt="backpack" />
+                <div>
+                <img src="../../images/apple.png" alt="backpack" name="teacher"/>
                 <h1>Teacher</h1>
-              </button>
-              <button
+                </div>
+              </div>
+              <div
                 className="role"
                 name="role"
                 value="school Leader"
-                onClick={this.handleChange}
+                onClick={this.selectUserType}
               >
-                <img src="../../images/clipboard.png" alt="backpack" />
+                <img src="../../images/clipboard.png" alt="backpack" name="school Leader"/>
                 <h1>School Leader</h1>
-              </button>
+              </div>
             </div>
           </div>
         )}
