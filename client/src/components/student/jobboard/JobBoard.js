@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import OneJob from './OneJob';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import './JobBoard.css'
 
 export default class JobBoard extends Component {
 
@@ -28,7 +28,8 @@ export default class JobBoard extends Component {
   render() {
     // console.log('state', this.state);
     return (
-      <div>
+      <>
+      <div className="job-board">
       <Link to="/jobs/create">Add Job</Link>
       <br/>
       {this.state.jobs.map((job) => {
@@ -40,6 +41,7 @@ export default class JobBoard extends Component {
               );
             })}
       </div>
+      </>
     )
   }
 }

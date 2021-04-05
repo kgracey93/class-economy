@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './JobBoard.css'
 
 export default class CreateJob extends Component {
   state = {  
