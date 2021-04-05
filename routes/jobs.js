@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const { title, salary, description, qualifications} = req.body;
   const user = req.user._id;
+  console.log(title);
   Job.create({
     title,
     salary,

@@ -34,6 +34,7 @@ export default class BankAccount extends Component {
           <br />
           <br />
           <table>
+          <tbody>
             <tr>
               <th>Amount</th>
               <th>Deposit/Withdraw</th>
@@ -45,11 +46,12 @@ export default class BankAccount extends Component {
               return (
                 <TransactionTable
                   transaction={transaction}
-                  key={transaction.id}
+                  key={transaction._id}
                 />
               );
             })}
             {/* </tr> */}
+            </tbody>
           </table>
           <div>
             {/* {this.state.transactions.map((transaction) => {

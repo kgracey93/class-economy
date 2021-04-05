@@ -30,7 +30,7 @@ export default class CreateJob extends Component {
     
     try {
       const newJob = await axios.post('/api/jobs', {
-      tite: this.state.title,
+      title: this.state.title,
       salary: this.state.salary,
       description: this.state.description,
       qualifications: this.state.qualifications,
@@ -59,7 +59,6 @@ export default class CreateJob extends Component {
               <div className="create-job-form-item">
                 <label>Job Title:</label>
                 <input
-                  type="title"
                   id="title"
                   name="title"
                   value={this.state.title}
