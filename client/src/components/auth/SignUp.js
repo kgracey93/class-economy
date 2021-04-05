@@ -14,8 +14,9 @@ export default class SignUp extends Component {
   };
 
   handleChange = (event) => {
-    const { name } = event.target;
-    this.setState({ role: name });
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+    // console.log(event.target.name);
   };
 
   handleSubmit = (event) => {

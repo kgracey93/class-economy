@@ -10,9 +10,10 @@ export default class SignUp extends Component {
   };
 
   handleChange = (event) => {
-    const { name } = event.target;
-    this.setState({ role: name });
-    console.log(event.target.name);
+    console.log(event.target);
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+    // console.log(event.target.name);
   };
 
   handleSubmit = (event) => {
@@ -38,9 +39,11 @@ export default class SignUp extends Component {
       role: '',
     });
     this.props.history.push('/');
+    console.log(this.state);
   };
 
   render() {
+    console.log(this.state);
     return (
       <>
         {this.state.role ? (
@@ -99,30 +102,33 @@ export default class SignUp extends Component {
           <div className="login">
             <h1>Login with Classroom Economy as</h1>
             <div className="role-buttons">
-              <div className="role" onClick={this.handleChange}>
-                <img
-                  src="../../images/backpack.png"
-                  alt="backpack"
-                  name="student"
-                />
+              <button
+                className="role"
+                name="role"
+                value="student"
+                onClick={this.handleChange}
+              >
+                <img src="../../images/backpack.png" alt="backpack" />
                 <h1>Student</h1>
-              </div>
-              <div className="role" onClick={this.handleChange}>
-                <img
-                  src="../../images/apple.png"
-                  alt="backpack"
-                  name="teacher"
-                />
+              </button>
+              <button
+                className="role"
+                name="role"
+                value="teacher"
+                onClick={this.handleChange}
+              >
+                <img src="../../images/apple.png" alt="backpack" />
                 <h1>Teacher</h1>
-              </div>
-              <div className="role" onClick={this.handleChange}>
-                <img
-                  src="../../images/clipboard.png"
-                  alt="backpack"
-                  name="school-leader"
-                />
+              </button>
+              <button
+                className="role"
+                name="role"
+                value="school Leader"
+                onClick={this.handleChange}
+              >
+                <img src="../../images/clipboard.png" alt="backpack" />
                 <h1>School Leader</h1>
-              </div>
+              </button>
             </div>
           </div>
         )}
