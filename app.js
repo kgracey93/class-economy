@@ -80,6 +80,9 @@ app.use('/api/auth', auth);
 const transactions = require('./routes/transactions');
 app.use('/api/transactions', transactions);
 
+const jobs = require('./routes/jobs');
+app.use('/api/jobs', jobs);
+
 const users = require('./routes/users');
 app.use('/api/users', users);
 

@@ -9,6 +9,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Profile from './components/profile/Profile';
 import JobBoard from './components/student/jobboard/JobBoard';
 import CreateTransaction from './components/student/bankaccount/CreateTransaction';
+import CreateJob from './components/student/jobboard/CreateJob';
 import BankAccount from './components/student/bankaccount/BankAccount';
 
 class App extends Component {
@@ -68,6 +69,18 @@ class App extends Component {
             path="/transaction/create"
             render={(props) => (
               <CreateTransaction
+                setUser={this.setUser}
+                {...props}
+                user={this.state.user}
+              />
+            )}
+          />
+
+          <Route
+            exact
+            path="/jobs/create"
+            render={(props) => (
+              <CreateJob
                 setUser={this.setUser}
                 {...props}
                 user={this.state.user}
