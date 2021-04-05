@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import CreateTransaction from './CreateTransaction';
 import TransactionTable from './TransactionTable';
+import './BankAccount.css';
 
 export default class BankAccount extends Component {
   state = {
@@ -27,27 +28,34 @@ export default class BankAccount extends Component {
   render() {
     return (
       <>
-        <Link to="/transaction/create">Add Transaction</Link>
-        <br/>
-        <br/>
-        <br/>
-        <table>
-          <tr>
-            <th>Amount</th>
-            <th>Deposit/Withdraw</th>
-            <th>Category</th>
-            <th>Description</th>
-          </tr>
-          {/* <tr> */}
-          {this.state.transactions.map((transaction) => {
-            return <TransactionTable transaction={transaction} key={transaction.id}/>;
-          })}
-          {/* </tr> */}
-        </table>
-        <div>
-          {/* {this.state.transactions.map((transaction) => {
+        <div className="bank-account">
+          <Link to="/transaction/create">Add Transaction</Link>
+          <br />
+          <br />
+          <br />
+          <table>
+            <tr>
+              <th>Amount</th>
+              <th>Deposit/Withdraw</th>
+              <th>Category</th>
+              <th>Description</th>
+            </tr>
+            {/* <tr> */}
+            {this.state.transactions.map((transaction) => {
+              return (
+                <TransactionTable
+                  transaction={transaction}
+                  key={transaction.id}
+                />
+              );
+            })}
+            {/* </tr> */}
+          </table>
+          <div>
+            {/* {this.state.transactions.map((transaction) => {
             return <TransactionTable transaction={transaction} />;
           })} */}
+          </div>
         </div>
       </>
     );

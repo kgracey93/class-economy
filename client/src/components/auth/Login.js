@@ -10,7 +10,7 @@ export default class SignUp extends Component {
   };
 
   handleChange = (event) => {
-    console.log(event.target);
+    // console.log(event.target);
     const { name, value } = event.target;
     this.setState({ [name]: value });
     // console.log(event.target.name);
@@ -48,7 +48,7 @@ export default class SignUp extends Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log('state from login page', this.state);
     return (
       <>
         {this.state.role ? (

@@ -70,7 +70,7 @@ export default class CreateTransaction extends Component {
   render() {
     return (
       <>
-        <div>
+        <div className="bank-account-form">
           <form onSubmit={this.handleSubmit}>
             <h1>Create a Transaction</h1>
             <div>
