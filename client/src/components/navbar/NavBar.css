@@ -1,0 +1,21 @@
+.logo {
+  width: 3vw;
+  margin: 0 1vw;
+}
+
+.link {
+  margin: 0 1vw;
+  color: black
+}
+
+.loginlink {
+  color: #03bfff;
+  text-decoration: underline 
+}
+
+.signuplink {
+  background: #03bfff;
+  color: white;
+  padding: .5vw 2vw;
+  border-radius: 2vw;
+}

@@ -19,7 +19,7 @@ export default class Dashboard extends Component {
           </div>
         )}
 
-        <img src='../../images/KatieAbby.png'alt="not working" />
+        <img src='../../images/KatieAbby.png'alt="katie abby pic" />
       </>
     );
   }

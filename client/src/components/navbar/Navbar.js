@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { logout } from '../../services/auth';
-// import './NavBar.css'
+import './NavBar.css'
 
 export default function Navbar(props) {
   const handleLogout = (props) => {
@@ -15,8 +15,8 @@ export default function Navbar(props) {
   return (
     <nav className="navbar">
       <div className="logo">
-        <Link className="link" to="/">
-          Home
+      <Link className="link" to="/">
+      <img src='../../images/logo.png'alt="logo" className="logo"/>
         </Link>
       </div>
       {props.user ? (
@@ -40,11 +40,14 @@ export default function Navbar(props) {
         </div>
       ) : (
         <div className="links">
-          <Link className="link" to="/signup">
-            Sign Up
-          </Link>
-          <Link className="link" to="/login">
+          <Link className="link">Learn More</Link>
+          <Link className="link">Schools</Link>
+          <Link className="link">Resources</Link>
+          <Link className="link loginlink" to="/login">
             Log In
+          </Link>
+          <Link className="link signuplink" to="/signup">
+            Sign Up
           </Link>
         </div>
       )}

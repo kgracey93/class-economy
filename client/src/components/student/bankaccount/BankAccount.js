@@ -13,7 +13,6 @@ export default class BankAccount extends Component {
     axios
       .get('/api/transactions')
       .then((response) => {
-        console.log('response.data', response.data);
         this.setState({
           transactions: response.data,
         });
@@ -41,7 +40,7 @@ export default class BankAccount extends Component {
           </tr>
           {/* <tr> */}
           {this.state.transactions.map((transaction) => {
-            return <TransactionTable transaction={transaction} />;
+            return <TransactionTable transaction={transaction} key={transaction.id}/>;
           })}
           {/* </tr> */}
         </table>
