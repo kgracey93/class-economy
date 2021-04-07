@@ -11,6 +11,7 @@ import JobBoard from './components/student/jobboard/JobBoard';
 import CreateTransaction from './components/student/bankaccount/CreateTransaction';
 import CreateJob from './components/student/jobboard/CreateJob';
 import BankAccount from './components/student/bankaccount/BankAccount';
+import OneJob from './components/student/jobboard/OneJob';
 
 class App extends Component {
   state = {
@@ -22,6 +23,7 @@ class App extends Component {
       user: user,
     });
   };
+
   render() {
     return (
       <div className="App">
@@ -51,7 +53,6 @@ class App extends Component {
               />
             )}
           />
-
           <Route
             exact
             path="/job-board"
@@ -63,6 +64,19 @@ class App extends Component {
               />
             )}
           />
+
+          {/* <Route
+            exact
+            path="/job-board/:id"
+            render={(props) => (
+              <JobBoard
+                setUser={this.setUser}
+                {...props}
+                user={this.state.user}
+                selectedJob="job"
+              />
+            )}
+          /> */}
 
           <Route
             exact

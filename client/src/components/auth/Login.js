@@ -17,6 +17,7 @@ export default class SignUp extends Component {
   };
 
   selectUserType = (event) => {
+    // event.preventDefault()
     const { name } = event.target;
     this.setState({ role: name });
   }

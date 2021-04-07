@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import OneJob from './OneJob';
-import { Link } from 'react-router-dom';
+import JobList from './JobList'
+import { Route, Link, Switch } from 'react-router-dom';
 import axios from 'axios';
 import './JobBoard.css'
 
@@ -32,7 +33,8 @@ export default class JobBoard extends Component {
       <div className="job-board">
       <Link to="/jobs/create">Add Job</Link>
       <br/>
-      {this.state.jobs.map((job) => {
+      {/* <div>
+        {this.state.jobs.map((job) => {
               return (
                 <OneJob
                   job={job}
@@ -40,6 +42,23 @@ export default class JobBoard extends Component {
                 />
               );
             })}
+      </div> */}
+      <div>
+        <JobList
+          jobs={this.state.jobs}
+        />
+      </div>
+      {/* <Switch>
+          
+          <Route
+            exact
+            path="/jobs/:id"
+            jobs={this.state.jobs}
+          >
+            <OneJob/>
+          </Route>
+
+          </Switch> */}
       </div>
       </>
     )
