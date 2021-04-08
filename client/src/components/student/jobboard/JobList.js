@@ -40,7 +40,7 @@ export default class JobList extends Component {
     return (
       <div className="job-list-info">
         <div
-          style={{ maxHeight: '70vh', overflow: 'scroll' }}
+          style={{ maxHeight: '70vh', overflowY: 'scroll' }}
           className="job-list"
         >
           {this.props.jobs.map((job) => {
