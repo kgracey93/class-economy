@@ -11,16 +11,21 @@ export default class JobList extends Component {
   selectJob = async (event) => {
     try {
       event.preventDefault();
-      console.log('event.target', event.target);
       const jobId = event.target.id;
-      console.log('jobId', jobId);
       axios.get(`/api/jobs/${jobId}`).then((res) => {
         const selectedJob = res.data;
-        console.log('selectedJob', selectedJob);
         this.setState({ selectedJob });
       });
     } catch (error) {
       console.log('error', error);
+    }
+  };
+
+  applyToJob = async (event) => {
+    try {
+      alert('Nice click! This button does nothing 😈😜');
+    } catch (error) {
+      console.log('error:', error);
     }
   };
 
@@ -32,32 +37,51 @@ export default class JobList extends Component {
   // };
 
   render() {
-    console.log('this.props.selectedJob', this.props.selectedJob);
     return (
-      <div>
+      <div className="job-list-info">
         <div
-          // className="col-5"
-          style={{ maxHeight: '20vh', overflow: 'scroll' }}
+          style={{ maxHeight: '70vh', overflow: 'scroll' }}
+          className="job-list"
         >
-          <div id="id">
-            {this.props.jobs.map((job) => {
-              return (
-                <div key={job._id} id={job._id} className="job-preview" onClick={this.selectJob}>
-                  <h3 id={job._id}>{job.title}</h3>
-                  {job.salary}/week
-                </div>
-              );
-            })}
-          </div>
+          {this.props.jobs.map((job) => {
+            return (
+              <div
+                key={job._id}
+                id={job._id}
+                className="job-preview"
+                onClick={this.selectJob}
+              >
+                <h3 id={job._id}>{job.title}</h3>
+                <p>{job.salary}/week</p>
+              </div>
+            );
+          })}
         </div>
-        {this.state.selectedJob && (
-          <div>
-            <p>{this.state.selectedJob.title}</p>
-            <p>{this.state.selectedJob.description}</p>
-            <p>{this.state.selectedJob.salary}</p>
-            <p>{this.state.selectedJob.qualifications}</p>
-          </div>
-        )}
+        <div className="job-info">
+          {this.state.selectedJob ? (
+            <div>
+              <div className="job-title-and-button">
+                <div>
+                  <h1>{this.state.selectedJob.title}</h1>
+                  <p>{this.state.selectedJob.salary} /week</p>
+                </div>
+                <button onClick={this.applyToJob}>Apply Now</button>
+              </div>
+              <p className="vacancies">2 positions available</p>
+              <h3>Responsibilities</h3>
+              <p>{this.state.selectedJob.description}</p>
+              <h3>Qualifications</h3>
+              <p>{this.state.selectedJob.qualifications}</p>
+            </div>
+          ) : (
+            <div className="no-job-selected">
+              <h1>
+                Select a job from the left to apply and start making those Bux!
+              </h1>
+              <img src="../../images/moneygif.gif" alt="money gif" />
+            </div>
+          )}
+        </div>
       </div>
     );
   }
