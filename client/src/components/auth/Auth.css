@@ -37,9 +37,9 @@
   background: #03bfff;
 }
 
-.role:hover {
+/* .role:hover {
   background: 	#D3D3D3;
-}
+} */
 
 .auth-container {
   display: flex;
@@ -49,11 +49,20 @@
 
 .auth-container button {
   padding: 10px;
-  margin: 10px
+  margin: 10px;
 }
 
 .auth-container form {
   display: flex; 
   flex-direction: column;
   align-items: center;
+}
+
+.role button {
+  width: 10vw;
+  font-size: 1vw;
+}
+
+.school-leader button{
+  font-size: .77vw;
 }
