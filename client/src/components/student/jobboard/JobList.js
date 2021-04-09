@@ -10,8 +10,10 @@ export default class JobList extends Component {
 
   selectJob = async (event) => {
     try {
+      console.log(event.target);
       event.preventDefault();
       const jobId = event.target.id;
+      console.log(jobId);
       axios.get(`/api/jobs/${jobId}`).then((res) => {
         const selectedJob = res.data;
         this.setState({ selectedJob });
@@ -52,7 +54,7 @@ export default class JobList extends Component {
                 onClick={this.selectJob}
               >
                 <h3 id={job._id}>{job.title}</h3>
-                <p>{job.salary}/week</p>
+                <p id={job._id}>{job.salary}/week</p>
               </div>
             );
           })}
