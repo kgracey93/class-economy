@@ -22,8 +22,7 @@ export default class SignUp extends Component {
   selectUserType = (event) => {
     const { name } = event.target;
     this.setState({ role: name });
-  }
-
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -153,34 +152,39 @@ export default class SignUp extends Component {
           <div className="signup">
             <h1>Signup with Classroom Economy as</h1>
             <div className="role-buttons">
-              <div
-                className="role"
-                name="role"
-                value="student"
-                onClick={this.selectUserType}
-              >
-                <img src="../../images/backpack.png" alt="backpack" name="student"/>
-                <h1>Student</h1>
+              <div className="role">
+                <img
+                  src="../../images/backpack.png"
+                  alt="backpack"
+                  name="student"
+                />
+                <button onClick={this.selectUserType} name="student">
+                  Student
+                </button>
               </div>
-              <div
-                className="role"
-                name="role"
-                value="teacher"
-                onClick={this.selectUserType}
-              >
+              <div className="role">
                 <div>
-                <img src="../../images/apple.png" alt="backpack" name="teacher"/>
-                <h1>Teacher</h1>
+                  <img
+                    src="../../images/apple.png"
+                    alt="backpack"
+                    name="teacher"
+                  />
+                  <button onClick={this.selectUserType} name="teacher">
+                    Teacher
+                  </button>
                 </div>
               </div>
               <div
-                className="role"
-                name="role"
-                value="school Leader"
-                onClick={this.selectUserType}
+                className="role school-leader"
               >
-                <img src="../../images/clipboard.png" alt="backpack" name="school Leader"/>
-                <h1>School Leader</h1>
+                <img
+                  src="../../images/clipboard.png"
+                  alt="backpack"
+                  name="school Leader"
+                />
+                <button onClick={this.selectUserType} name="school Leader">
+                  School Leader
+                </button>
               </div>
             </div>
           </div>
